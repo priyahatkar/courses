@@ -1,0 +1,35 @@
+
+        <h3>{{coursesData.description}}</h3>
+
+<form [formGroup]="courseForm" (ngSubmit)="onCourseForm()">
+    <mat-form-field  class="w-100" appearance="legacy">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="description">
+    </mat-form-field>
+    <mat-form-field  class="w-100" appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+            <mat-option value="BEGINNER">
+                Beginner
+            </mat-option>
+            <mat-option value="ADVANCED">
+                Advanced
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field  class="w-100" appearance="fill">
+        <mat-label>Released At</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="releasedAt">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field  class="w-100" class="w-100"appearance="legacy">
+        <mat-label>Long Description</mat-label>
+        <textarea type="text" matInput formControlName="longDescription"></textarea>
+    </mat-form-field>
+    <mat-card-actions class="d-flex justify-content-around">
+        <button mat-raised-button color="warn">Close</button>
+        <button mat-raised-button color="primary" [disabled]="courseForm.invalid">Save</button>
+    </mat-card-actions>
+</form>

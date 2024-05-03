@@ -1,0 +1,44 @@
+<div class="course">
+    <ng-container *ngIf="(singleObj$ | async) as Icourse; else noCourse">
+        <h3 class="mt-3">{{Icourse.description}}</h3>
+        <img [src]="Icourse.iconUrl" alt="{{Icourse.description}}" title="{{Icourse.description}}">
+    </ng-container>
+</div>
+<div class="row">
+    <div class="col-md-12 mt-5">
+        <form [formGroup]="lessionForm">
+            <mat-form-field  class="w-100" appearance="legacy">
+                <mat-label>Lession</mat-label>
+                <input matInput placeholder="Search Lession" formControlName="lession">
+            </mat-form-field>
+        </form>
+    </div>
+</div>
+<ng-template #noCourse>
+    <p class="alert alert-danger">
+        No course is available with this Id
+    </p>
+</ng-template>
+<ng-container *ngIf="(lession$ | async) as Ilession; else courseLession">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Seq No</th>
+                <th>Description</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let less of Ilession">
+                <td>{{less.seqNo}}</td>
+                <td>{{less.description}}</td>
+                <td>{{less.duration}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+<ng-template #courseLession>
+    <p class="alert alert-danger">
+        No lessons available
+    </p>
+</ng-template>
